@@ -1,4 +1,3 @@
-import { Header } from 'components/Header/Header';
 import React, { Component } from 'react';
 import styles from './Search.module.css';
 // import { PropsInput } from '../typingData';
