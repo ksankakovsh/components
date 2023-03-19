@@ -1,0 +1,10 @@
+.cards_wrap {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.title {
+    text-align: center;
+    font-size: 3rem;
+}
