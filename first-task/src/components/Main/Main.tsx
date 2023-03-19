@@ -5,8 +5,8 @@ import { SateCharacters, Character } from '../typingData';
 import styles from './Main.module.css';
 
 const BASE_PATH = 'https://rickandmortyapi.com/api/character';
-const SEARCH_PATH = '/search';
-const SEARCH_PARAM = 'query=';
+// const SEARCH_PATH = '/search';
+// const SEARCH_PARAM = 'query=';
 
 export class Main extends Component {
   state: SateCharacters = {
@@ -18,7 +18,6 @@ export class Main extends Component {
     fetch(`${BASE_PATH}`)
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         this.setNews(result.results);
       })
       .catch((error) => error);
@@ -31,7 +30,7 @@ export class Main extends Component {
     this.setState((prevState) => ({ ...prevState, result }));
   }
   render() {
-    const { searchText, result } = this.state;
+    const { result } = this.state;
     return (
       <div>
         <Header />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Search.module.css';
-import { PropsInput } from '../typingData';
+// import { PropsInput } from '../typingData';
 
 export default class Search extends Component {
   render() {
