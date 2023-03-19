@@ -8,6 +8,7 @@ export class Notfound extends Component {
           This page not found
         </h1>
         <img
+          style={{ margin: '30px auto' }}
           src="https://www.templedesign.com.au/wp-content/uploads/2013/02/Error_404.jpg"
           alt="not found"
         />
