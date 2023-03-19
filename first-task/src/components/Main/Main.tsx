@@ -15,10 +15,7 @@ export class Main extends Component {
     result: [],
   };
   componentDidMount() {
-    const { searchText } = this.state;
-    this.fetchData(searchText);
-  }
-  fetchData(searchText: string) {
+    // this.fetchData(searchText);
     fetch(`${BASE_PATH}`)
       .then((res) => res.json())
       .then((result) => {
