@@ -1,7 +1,6 @@
-export interface PropsInput {
-  onChange: () => object;
+export interface Input {
+  handleChange: () => object;
   value: string;
-  onKeyPress: () => object;
 }
 export interface InfoAPI {
   count: number;

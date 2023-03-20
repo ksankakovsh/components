@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import styles from './Search.module.css';
-// import { PropsInput } from '../typingData';
 
 export class Search extends Component {
+  constructor(props: string) {
+    super(props);
+    this.state = { value: '' };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ value: event.target.value });
+  }
+  componentWillUnmount() {
+    const searchText = this.state;
+    console.log(searchText);
+  }
   render() {
     return (
       <>
@@ -24,10 +35,8 @@ export class Search extends Component {
           </svg>
           <input
             className={styles.input}
-            placeholder="Click to search"
-            //   onChange={onChange}
-            //   onKeyPress={onKeyPress}
-            //   value={value}
+            placeholder="Enter character name"
+            onChange={this.handleChange}
           />
         </div>
       </>

@@ -20,6 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "npm run lint -- --fix",
     "eject": "react-scripts eject",
     "server": "json-server -w server/db.json -p 3001"
   },
