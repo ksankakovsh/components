@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Rick Sanchez/i);
+  const linkElement = screen.getByText(/The Rick and Morty characters/i);
   expect(linkElement).toBeInTheDocument();
 });
