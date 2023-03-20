@@ -10,7 +10,7 @@ export class Card extends Component<Character> {
   render() {
     return (
       <div className={styles.card}>
-        <img src={this.props.image} alt="avatar characters" />
+        <img src={this.props.image} alt="avatar characters" className={styles.card_img} />
         <div className={styles.description}>
           <h2 className={styles.name}>
             {this.props.id} {this.props.name}
