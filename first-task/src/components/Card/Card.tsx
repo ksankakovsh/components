@@ -13,7 +13,7 @@ export class Card extends Component<Character> {
         <img src={this.props.image} alt="avatar characters" className={styles.card_img} />
         <div className={styles.description}>
           <h2 className={styles.name}>
-            {this.props.id} {this.props.name}
+            {this.props.id}. {this.props.name}
           </h2>
           <p className={styles.card_text}>Status: {this.props.status}</p>
           <p className={styles.card_text}>Species: {this.props.species}</p>
