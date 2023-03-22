@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Notfound } from './components/Notfound';
+import { Notfound } from './pages/Notfound';
 import { Route, Routes } from 'react-router-dom';
-import { Main } from 'components/Main/Main';
-import { About } from 'components/About/About';
+import { Main } from 'pages/Main/Main';
+import { About } from 'pages/About/About';
 
 export class App extends Component {
   render() {
