@@ -12,6 +12,9 @@ export class Header extends Component {
         <Link className={styles.links_item} to="/about">
           About
         </Link>
+        <Link className={styles.links_item} to="/form">
+          Form
+        </Link>
       </div>
     );
   }

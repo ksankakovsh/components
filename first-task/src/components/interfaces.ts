@@ -44,3 +44,31 @@ export interface SateCharacters {
   searchText: string;
   result: Character[];
 }
+
+export interface DataCard {
+  name: string;
+  surname: string;
+  date: string;
+  species: string;
+  approval: boolean;
+  img: string | null;
+}
+export enum SpeciesEnum {
+  human = 'Human',
+  alien = 'Alien',
+  elf = 'Elf',
+  animal = 'Animal',
+  oleg = 'Oleg',
+}
+export interface StateInput {
+  name: boolean;
+  surname: boolean;
+  date: boolean;
+  file: boolean;
+  species: boolean;
+  approval: boolean;
+  img: string | null;
+}
+export interface PropsInput {
+  addData: (data: DataCard) => void;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'components/Card/Card';
 import { Header } from 'components/Header/Header';
-import { SateCharacters, Character } from '../../components/typingData';
+import { SateCharacters, Character } from '../../components/interfaces';
 import styles from './Main.module.css';
 
 const BASE_PATH = 'https://rickandmortyapi.com/api/character';

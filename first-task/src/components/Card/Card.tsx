@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Card.module.css';
-import { Character } from '../typingData';
+import { Character } from '../interfaces';
 
 export class Card extends Component<Character> {
   constructor(props: Character) {

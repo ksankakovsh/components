@@ -4,6 +4,7 @@ import { Notfound } from './pages/Notfound';
 import { Route, Routes } from 'react-router-dom';
 import { Main } from 'pages/Main/Main';
 import { About } from 'pages/About/About';
+import { Form } from 'pages/Form/Form';
 
 export class App extends Component {
   render() {
@@ -11,6 +12,7 @@ export class App extends Component {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/about" element={<About />} />
+        <Route path="/form" element={<Form />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     );
