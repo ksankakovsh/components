@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import { Notfound } from './pages/Notfound';
 import { Route, Routes } from 'react-router-dom';
