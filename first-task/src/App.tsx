@@ -6,17 +6,15 @@ import { Main } from 'pages/Main/Main';
 import { About } from 'pages/About/About';
 import { Form } from 'pages/Form/Form';
 
-export class App extends Component {
-  render() {
-    return (
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="*" element={<Notfound />} />
-      </Routes>
-    );
-  }
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/form" element={<Form />} />
+      <Route path="*" element={<Notfound />} />
+    </Routes>
+  );
 }
 
 export default App;
