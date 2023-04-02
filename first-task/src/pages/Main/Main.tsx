@@ -6,7 +6,7 @@ import styles from './Main.module.css';
 
 const BASE_PATH = 'https://rickandmortyapi.com/api/character';
 
-export function Main() {
+export const Main = () => {
   const [characters, setCharacters] = useState([]);
   const [searchText, setSearchText] = useState('');
 
@@ -72,4 +72,4 @@ export function Main() {
       </div>
     </div>
   );
-}
+};
