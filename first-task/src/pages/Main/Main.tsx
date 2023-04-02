@@ -9,8 +9,6 @@ const BASE_PATH = 'https://rickandmortyapi.com/api/character';
 export function Main() {
   const [characters, setCharacters] = useState([]);
   const [searchText, setSearchText] = useState('');
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('request', JSON.stringify(searchText));
@@ -18,20 +16,12 @@ export function Main() {
 
   useEffect(() => {
     const getData = async () => {
-      // try {
       const response = await fetch(`${BASE_PATH}`);
       if (!response.ok) {
         throw new Error(`This is an HTTP error: The status is ${response.status}`);
       }
       const actualData = await response.json();
       setCharacters(actualData.results);
-      // setError(null);
-      // } catch (err: unknown) {
-      //   setError(err);
-      //   setCharacters(null);
-      // } finally {
-      //   setLoading(false);
-      // }
     };
     getData();
   }, []);
@@ -63,8 +53,6 @@ export function Main() {
         />
       </div>
 
-      {/* {loading && <div>A moment please...</div>}
-      {error && <div>{`There is a problem fetching the post data - ${error}`}</div>} */}
       <h1 className={styles.title}>The Rick and Morty characters</h1>
       <div className={styles.cards_wrap}>
         {characters &&
