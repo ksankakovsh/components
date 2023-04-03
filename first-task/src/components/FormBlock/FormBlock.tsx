@@ -135,7 +135,7 @@ export const FormBlock = () => {
       />
       <div className={styles.btn__block}>
         <Button type="submit" disable={submitButtonDisable()}>
-          Create card
+          Submit data
         </Button>
         <Button type="reset" onClick={() => resetForm()}>
           Reset
