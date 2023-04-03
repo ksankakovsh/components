@@ -1,7 +1,56 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import styles from './Input.module.css';
 
-function Input() {
-  return <div></div>;
+interface Props {
+  register?: UseFormRegisterReturn;
+  type?: string;
+  name?: string;
+  placeholder?: string;
+  label?: string;
+  error?: FieldError;
+  errorMessage?: string;
+  style?: React.CSSProperties;
+  image?: string | null;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+const Input: FC<Props> = (props) => {
+  const {
+    type = 'text',
+    name,
+    label,
+    error,
+    errorMessage,
+    register,
+    image,
+    onChange,
+    ...restProps
+  } = props;
+
+  const inputId = `${type}-${Math.random()}`;
+
+  return (
+    <div>
+      {label && (
+        <label htmlFor={inputId} className={styles.label}>
+          {label}
+        </label>
+      )}
+      {type === 'file' && image ? <img src={image} alt="avatar" /> : null}
+      <input
+        type={type}
+        name={name}
+        id={inputId}
+        {...register}
+        onChange={onChange}
+        {...restProps}
+        className={styles.inputForm}
+      />
+      {error && <span>{error.message || errorMessage}</span>}
+    </div>
+  );
+};
 
 export default Input;

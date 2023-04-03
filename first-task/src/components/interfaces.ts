@@ -44,7 +44,13 @@ export interface SateCharacters {
   searchText: string;
   result: Character[];
 }
-
+export interface PropsBtn {
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  className?: string;
+  disable?: boolean;
+  onClick?: () => void;
+  children: React.ReactNode;
+}
 export interface DataCard {
   name: string;
   surname: string;
@@ -61,14 +67,10 @@ export enum SpeciesEnum {
   oleg = 'Oleg',
 }
 export interface StateInput {
-  name: boolean;
-  surname: boolean;
-  date: boolean;
-  file: boolean;
-  species: boolean;
+  name: string;
+  surname: string;
+  date: string;
+  species: SpeciesEnum;
+  file: string;
   approval: boolean;
-  img: string | null;
-}
-export interface PropsInput {
-  addData: (data: DataCard) => void;
 }

@@ -1,0 +1,8 @@
+.form__block {
+    max-width: 500px;
+    width: 100%;
+}
+.btn__block {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,8 +1,16 @@
 .inputForm {
     border-bottom: 2px solid black;
-    max-width: 300px;
+    max-width: 500px;
+    width: 100%;
     height: 42px;
     border-left: none;
     border-top: none;
     border-right: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+input[type=date] {
+    flex-direction: row;
 }
