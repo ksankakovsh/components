@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './FormBlock.module.css';
-import { DataCard, SpeciesEnum, StateInput } from 'components/interfaces';
+import { SpeciesEnum, StateInput } from 'components/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
@@ -34,15 +34,18 @@ export const FormBlock = () => {
     },
   });
   const [img, setImg] = useState<null | string>(null);
-  const onFormSubmit: SubmitHandler<StateInput> = (data) => {
-    // const newCard: DataCard = {
-    //   name: data.name,
-    //   surname: data.surname,
-    //   date: data.date,
-    //   species: data.species,
-    //   img: img,
-    //   approval: data.approval,
-    // };
+  // const onFormSubmit: SubmitHandler<StateInput> = (data) => {
+  //   const newCard: DataCard = {
+  //     name: data.name,
+  //     surname: data.surname,
+  //     date: data.date,
+  //     species: data.species,
+  //     img: img,
+  //     approval: data.approval,
+  //   };
+  //   resetForm();
+  // };
+  const onFormSubmit: SubmitHandler<StateInput> = () => {
     resetForm();
   };
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
