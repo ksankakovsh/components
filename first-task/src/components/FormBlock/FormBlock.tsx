@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import styles from './FormBlock.module.css';
 import { DataCard, SpeciesEnum, StateInput } from 'components/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
-import styles from './FormBlock.module.css';
 import Button from 'components/Button/Button';
 
 const defaultValues: StateInput = {
@@ -21,7 +21,7 @@ export const FormBlock = () => {
     handleSubmit,
     reset,
     formState: { errors },
-    getValues,
+    // getValues,
     clearErrors,
   } = useForm<StateInput>({
     defaultValues: {
@@ -35,14 +35,14 @@ export const FormBlock = () => {
   });
   const [img, setImg] = useState<null | string>(null);
   const onFormSubmit: SubmitHandler<StateInput> = (data) => {
-    const newCard: DataCard = {
-      name: data.name,
-      surname: data.surname,
-      date: data.date,
-      species: data.species,
-      img: img,
-      approval: data.approval,
-    };
+    // const newCard: DataCard = {
+    //   name: data.name,
+    //   surname: data.surname,
+    //   date: data.date,
+    //   species: data.species,
+    //   img: img,
+    //   approval: data.approval,
+    // };
     resetForm();
   };
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
