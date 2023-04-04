@@ -12,7 +12,7 @@ export const DataForm: React.FC<Props> = ({ cards }) => {
         cards.map((card, index) => {
           return (
             <div className={styles.card} key={index}>
-              {card.img && <img src={card.img} alt="avatar" className={styles.card_img} />}
+              {card.img && <img src={`${card.img}`} alt="avatar" className={styles.card_img} />}
 
               <div className={styles.description}>
                 <h2 className={styles.name}>

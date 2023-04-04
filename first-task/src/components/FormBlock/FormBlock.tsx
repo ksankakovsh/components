@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './FormBlock.module.css';
-import { SpeciesEnum, StateInput } from 'components/interfaces';
+import { DataCard, FormProps, SpeciesEnum, StateInput } from 'components/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
 import Button from 'components/Button/Button';
+import Checkbox from 'components/Checkbox/Checkbox';
 
 const defaultValues: StateInput = {
   name: '',
@@ -15,13 +16,12 @@ const defaultValues: StateInput = {
   approval: false,
 };
 
-export const FormBlock = () => {
+export const FormBlock: React.FC<FormProps> = (props) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-    // getValues,
     clearErrors,
   } = useForm<StateInput>({
     defaultValues: {
@@ -34,20 +34,25 @@ export const FormBlock = () => {
     },
   });
   const [img, setImg] = useState<null | string>(null);
-  // const onFormSubmit: SubmitHandler<StateInput> = (data) => {
-  //   const newCard: DataCard = {
-  //     name: data.name,
-  //     surname: data.surname,
-  //     date: data.date,
-  //     species: data.species,
-  //     img: img,
-  //     approval: data.approval,
-  //   };
-  //   resetForm();
-  // };
-  const onFormSubmit: SubmitHandler<StateInput> = () => {
+
+  const onFormSubmit: SubmitHandler<StateInput> = (data) => {
+    addCard(data.name, data.surname, data.date, data.species, data.file);
     resetForm();
   };
+
+  const addCard = (name: string, surname: string, date: string, species: string, img: string) => {
+    const card: DataCard = {
+      name: name,
+      surname: surname,
+      date: date,
+      species: species,
+      img,
+      approval: true,
+    };
+
+    props.updateData(props.cards.concat([card]));
+  };
+
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name as keyof StateInput;
     if (name === 'file' && e.target.files?.length) {
@@ -105,9 +110,9 @@ export const FormBlock = () => {
     },
   });
   const species = register('species');
-  // const approval = register('approval', {
-  //   validate: (data) => data,
-  // });
+  const approval = register('approval', {
+    validate: (data) => data,
+  });
 
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
@@ -135,6 +140,12 @@ export const FormBlock = () => {
         values={['Human', 'Alien', 'Elf', 'Animal', 'Oleg']}
         register={species}
         name="species"
+      />
+      <Checkbox
+        label="Do you agree to hand over your data to darknet or fraudsters?"
+        register={approval}
+        error={errors.approval}
+        errorMessage="you should agree"
       />
       <div className={styles.btn__block}>
         <Button type="submit" disable={submitButtonDisable()}>

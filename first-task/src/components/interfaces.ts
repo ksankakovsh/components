@@ -57,7 +57,7 @@ export interface DataCard {
   date: string;
   species: string;
   approval: boolean;
-  img: string | null;
+  img: Blob | MediaSource | string | null;
 }
 export enum SpeciesEnum {
   human = 'Human',
@@ -74,51 +74,7 @@ export interface StateInput {
   file: string;
   approval: boolean;
 }
-/* eslint-disable prettier/prettier */
-// export enum Types {
-//   AddCard = 'ADD_FORM_CARD',
-//   ChangeForm = 'CHANGE_FORM_VALUES',
-//   DisableSubmit = 'DISABLE_SUBMIT_BUTTON',
-//   EnableSubmit = 'ENABLE_SUBMIT_BUTTON',
-// }
-
-// // FormPage
-// export interface IFormPage {
-//   personCards: PersonCard[];
-//   form: IFormInput;
-//   submitBtnDisable: boolean,
-// }
-
-// export type FormPageActions = { type: Types.AddCard; payload: PersonCard; } |
-// { type: Types.ChangeForm; payload: IFormInput; } | { type: Types.DisableSubmit; } | { type: Types.EnableSubmit; };
-
-// export const formPageReducer = (state: IFormPage, action: FormPageActions) => {
-//   switch (action.type) {
-//     case Types.AddCard:
-//       return ({
-//         ...state,
-//         personCards: [...state.personCards, action.payload]
-//       }
-//       );
-//     case Types.ChangeForm:
-//       return ({
-//         ...state,
-//         form: action.payload
-//       }
-//       );
-//     case Types.DisableSubmit:
-//       return ({
-//         ...state,
-//         submitBtnDisable: true
-//       }
-//       );
-//     case Types.EnableSubmit:
-//       return ({
-//         ...state,
-//         submitBtnDisable: false
-//       }
-//       );
-//     default:
-//       return state;
-//   }
-// };
+export interface FormProps {
+  cards: DataCard[];
+  updateData: (value: DataCard[]) => void;
+}

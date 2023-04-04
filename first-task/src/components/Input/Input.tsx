@@ -38,7 +38,7 @@ const Input: FC<Props> = (props) => {
           {label}
         </label>
       )}
-      {type === 'file' && image ? <img src={image} alt="avatar" /> : null}
+      {type === 'file' && image ? <img src={image} alt="avatar" className={styles.avatar} /> : null}
       <input
         type={type}
         name={name}
