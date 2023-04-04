@@ -12,6 +12,7 @@
     max-width: 300px;
     width: 100%;
     background-color: #46505a;
+    margin: 1rem auto;
 }
 .card_img {
     border-radius: 10px 10px 0 0;
