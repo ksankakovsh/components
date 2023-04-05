@@ -39,7 +39,7 @@ export const FormBlock: React.FC<FormProps> = (props) => {
     addCard(data.name, data.surname, data.date, data.species, data.file);
     resetForm();
   };
-
+  console.log(image);
   const addCard = (name: string, surname: string, date: string, species: string, img: string) => {
     const card: DataCard = {
       name: name,
