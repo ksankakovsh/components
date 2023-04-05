@@ -57,7 +57,7 @@ export interface DataCard {
   date: string;
   species: string;
   approval: boolean;
-  img: Blob | MediaSource | string | null;
+  img?: string | null;
 }
 export enum SpeciesEnum {
   human = 'Human',

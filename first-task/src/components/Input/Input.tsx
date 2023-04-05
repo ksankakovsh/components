@@ -12,6 +12,7 @@ interface Props {
   errorMessage?: string;
   style?: React.CSSProperties;
   image?: string | null;
+  ref?: React.MutableRefObject<null>;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

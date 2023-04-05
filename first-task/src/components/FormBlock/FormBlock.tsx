@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './FormBlock.module.css';
 import { DataCard, FormProps, SpeciesEnum, StateInput } from 'components/interfaces';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -22,7 +22,6 @@ export const FormBlock: React.FC<FormProps> = (props) => {
     handleSubmit,
     reset,
     formState: { errors },
-    clearErrors,
   } = useForm<StateInput>({
     defaultValues: {
       name: '',
@@ -34,7 +33,8 @@ export const FormBlock: React.FC<FormProps> = (props) => {
     },
   });
   const [img, setImg] = useState<null | string>(null);
-
+  const [image, setImage] = useState<File | undefined>();
+  const [imageURL, setImageURL] = useState<string | ArrayBuffer | null | undefined>('');
   const onFormSubmit: SubmitHandler<StateInput> = (data) => {
     addCard(data.name, data.surname, data.date, data.species, data.file);
     resetForm();
@@ -53,17 +53,20 @@ export const FormBlock: React.FC<FormProps> = (props) => {
     props.updateData(props.cards.concat([card]));
   };
 
-  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name as keyof StateInput;
-    if (name === 'file' && e.target.files?.length) {
-      setImg(URL.createObjectURL(e.target.files[0]));
-    } else if (name === 'file' && e.target.files?.length === 0) {
-      setImg(null);
+  const filePick = useRef(null);
+  const fileReader = new FileReader();
+  fileReader.onloadend = () => {
+    setImageURL(fileReader.result);
+  };
+  localStorage.setItem('imageURL', JSON.stringify(imageURL));
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      setImage(file);
+      fileReader.readAsDataURL(file);
     }
-    if (errors[name]) {
-      clearErrors(name);
-    }
-  }
+  };
 
   const submitButtonDisable = () => {
     if (
@@ -126,6 +129,7 @@ export const FormBlock: React.FC<FormProps> = (props) => {
         error={errors.file}
         errorMessage="You should download avatar"
         onChange={onChangeHandler}
+        ref={filePick}
       />
       <Input
         type="date"
