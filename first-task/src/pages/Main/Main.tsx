@@ -11,7 +11,9 @@ export const Main = () => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('request', JSON.stringify(searchText));
+    return () => {
+      localStorage.setItem('request', JSON.stringify(searchText));
+    };
   }, [searchText]);
 
   useEffect(() => {
