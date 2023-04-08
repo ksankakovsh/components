@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 export interface Input {
   handleChange: () => object;
   value: string;
@@ -38,6 +40,7 @@ export interface Character {
   species: string;
   gender: string;
   image: string;
+  onClick: () => void;
 }
 
 export interface SateCharacters {
@@ -66,13 +69,9 @@ export enum SpeciesEnum {
   animal = 'Animal',
   oleg = 'Oleg',
 }
-export interface StateInput {
-  name: string;
-  surname: string;
-  date: string;
-  species: SpeciesEnum;
-  file: FileList | string | null;
-  approval: boolean;
+export interface ModalProps {
+  visible: boolean;
+  onClose: () => void;
 }
 export interface FormProps {
   updateData: React.Dispatch<React.SetStateAction<DataCard[]>>;

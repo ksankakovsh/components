@@ -3,12 +3,16 @@ import { Card } from 'components/Card/Card';
 import { Header } from 'components/Header/Header';
 import { Character } from '../../components/interfaces';
 import styles from './Main.module.css';
+import Modal from 'components/Modal/Modal';
+import Button from 'components/Button/Button';
 
 const BASE_PATH = 'https://rickandmortyapi.com/api/character';
 
 export const Main = () => {
   const [characters, setCharacters] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [isModal, setModal] = useState(false);
+  const onClose = () => setModal(false);
 
   useEffect(() => {
     localStorage.setItem('request', searchText);
@@ -29,7 +33,7 @@ export const Main = () => {
     getData();
   }, []);
   return (
-    <div>
+    <>
       <Header />
       <div className={styles.search_bar}>
         <svg
@@ -54,6 +58,7 @@ export const Main = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
+        <button onClick={() => setModal(true)}> popup</button>
       </div>
 
       <h1 className={styles.title}>The Rick and Morty characters</h1>
@@ -69,10 +74,12 @@ export const Main = () => {
                 species={species}
                 gender={gender}
                 image={image}
+                onClick={() => setModal(true)}
               />
             );
           })}
       </div>
-    </div>
+      <Modal visible={isModal} onClose={onClose} />
+    </>
   );
 };
