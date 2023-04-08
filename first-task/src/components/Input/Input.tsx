@@ -18,17 +18,7 @@ interface Props {
 }
 
 const Input: FC<Props> = (props) => {
-  const {
-    type = 'text',
-    name,
-    label,
-    error,
-    errorMessage,
-    register,
-    image,
-    onChange,
-    ...restProps
-  } = props;
+  const { type = 'text', name, label, register, image, onChange, ...restProps } = props;
 
   const inputId = `${type}-${Math.random()}`;
 
@@ -49,7 +39,6 @@ const Input: FC<Props> = (props) => {
         {...restProps}
         className={styles.inputForm}
       />
-      {error && <span>{error.message || errorMessage}</span>}
     </div>
   );
 };

@@ -1,92 +1,31 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './FormBlock.module.css';
-import { DataCard, FormProps, SpeciesEnum, StateInput } from 'components/interfaces';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { DataCard, FormData } from 'components/interfaces';
+import { useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
 import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
 
-const defaultValues: StateInput = {
-  name: '',
-  surname: '',
-  date: '',
-  species: SpeciesEnum.oleg,
-  file: '',
-  approval: false,
-};
-
-export const FormBlock: React.FC<FormProps> = (props) => {
+export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm<StateInput>({
-    defaultValues: {
-      name: '',
-      surname: '',
-      date: '',
-      species: SpeciesEnum.oleg,
-      file: '',
-      approval: false,
-    },
-  });
-  const [img, setImg] = useState<null | string>(null);
-  const [image, setImage] = useState<File | undefined>();
-  const [imageURL, setImageURL] = useState<string | ArrayBuffer | null | undefined>('');
-  const onFormSubmit: SubmitHandler<StateInput> = (data) => {
-    addCard(data.name, data.surname, data.date, data.species, data.file);
-    resetForm();
-  };
-  console.log(image);
-  const addCard = (name: string, surname: string, date: string, species: string, img: string) => {
-    const card: DataCard = {
-      name: name,
-      surname: surname,
-      date: date,
-      species: species,
-      img,
+    formState: { errors, isValid },
+  } = useForm<FormData>();
+
+  const onFormSubmit = (data: FormData) => {
+    addCard({
+      name: data.name,
+      surname: data.surname,
+      date: data.date,
+      species: data.species,
+      img: URL.createObjectURL(data.img[0]),
       approval: true,
-    };
-
-    props.updateData(props.cards.concat([card]));
+    });
+    reset();
   };
 
-  const filePick = useRef(null);
-  const fileReader = new FileReader();
-  fileReader.onloadend = () => {
-    setImageURL(fileReader.result);
-  };
-  localStorage.setItem('imageURL', JSON.stringify(imageURL));
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files[0];
-      setImage(file);
-      fileReader.readAsDataURL(file);
-    }
-  };
-
-  const submitButtonDisable = () => {
-    if (
-      errors.species ||
-      errors.approval ||
-      errors.date ||
-      errors.file ||
-      errors.name ||
-      errors.surname
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  function resetForm() {
-    reset(defaultValues);
-    setImg(null);
-  }
   const name = register('name', {
     required: 'Required name',
     minLength: {
@@ -94,15 +33,12 @@ export const FormBlock: React.FC<FormProps> = (props) => {
       message: 'Min chars 3',
     },
   });
-  const surname = register('surname', {
-    required: 'Required surname',
-    minLength: {
-      value: 3,
-      message: 'Min chars 3',
-    },
-  });
-  const file = register('file', {
+  const file = register('img', {
     validate: (data) => data.length > 0,
+    required: {
+      value: true,
+      message: 'Choose avatar',
+    },
   });
   const date = register('date', {
     required: 'Required date',
@@ -119,26 +55,19 @@ export const FormBlock: React.FC<FormProps> = (props) => {
 
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
-      <Input label="Name" register={name} onChange={onChangeHandler} error={errors.name} />
-      <Input label="Surname" register={surname} error={errors.surname} onChange={onChangeHandler} />
-      <Input
-        type="file"
-        label="Your photo"
-        image={img}
-        register={file}
-        error={errors.file}
-        errorMessage="You should download avatar"
-        onChange={onChangeHandler}
-        ref={filePick}
-      />
-      <Input
-        type="date"
-        label="Birth date"
-        error={errors.date}
-        errorMessage="Pick correct birth date"
-        register={date}
-        onChange={onChangeHandler}
-      />
+      <Input label="Name" register={name} />
+      {errors.name && (
+        <p className="form-error" role="alert">
+          The name must be at least 3 characters long and start with an uppercased letter
+        </p>
+      )}
+      <Input type="file" label="Your photo" register={file} />
+      {errors.img && (
+        <p className="form-error" role="alert">
+          You must select a photo
+        </p>
+      )}
+      <Input type="date" label="Birth date" register={date} />
       <Select
         label="Choose your species"
         values={['Human', 'Alien', 'Elf', 'Animal', 'Oleg']}
@@ -148,19 +77,13 @@ export const FormBlock: React.FC<FormProps> = (props) => {
       <Checkbox
         label="Do you agree to hand over your data to darknet or fraudsters?"
         register={approval}
-        error={errors.approval}
-        errorMessage="you should agree"
       />
       <div className={styles.btn__block}>
-        <Button type="submit" disable={submitButtonDisable()}>
+        <Button type="submit" disable={!isValid}>
           Submit data
-        </Button>
-        <Button type="reset" onClick={() => resetForm()}>
-          Reset
         </Button>
       </div>
     </form>
   );
 };
-
 export default FormBlock;

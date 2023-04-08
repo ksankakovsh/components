@@ -57,7 +57,7 @@ export interface DataCard {
   date: string;
   species: string;
   approval: boolean;
-  img?: string | null;
+  img: string | null;
 }
 export enum SpeciesEnum {
   human = 'Human',
@@ -71,10 +71,13 @@ export interface StateInput {
   surname: string;
   date: string;
   species: SpeciesEnum;
-  file: string;
+  file: FileList | string | null;
   approval: boolean;
 }
 export interface FormProps {
-  cards: DataCard[];
-  updateData: (value: DataCard[]) => void;
+  updateData: React.Dispatch<React.SetStateAction<DataCard[]>>;
+}
+
+export interface FormData extends Omit<DataCard, 'img'> {
+  img: FileList;
 }

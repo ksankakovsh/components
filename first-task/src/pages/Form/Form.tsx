@@ -7,8 +7,8 @@ import { DataForm } from 'components/DataForm/DataForm';
 
 export const Form = () => {
   const [cards, setUpdateCards] = useState<DataCard[]>([]);
-  const updateData = (CardsForm: DataCard[]) => {
-    setUpdateCards(CardsForm);
+  const addCard = (card: DataCard) => {
+    setUpdateCards([...cards, card]);
   };
   return (
     <>
@@ -20,7 +20,7 @@ export const Form = () => {
             If you would like to be part of our team and travel with us to distant worlds and
             galaxies, fill in the form below.
           </p>
-          <FormBlock cards={cards} updateData={updateData} />
+          <FormBlock addCard={addCard} />
         </div>
         <DataForm cards={[...cards]} />
       </div>

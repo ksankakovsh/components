@@ -6,14 +6,13 @@ interface Props {
 }
 
 export const DataForm: React.FC<Props> = ({ cards }) => {
-  const urlImg = JSON.parse(localStorage.imageURL);
   return (
     <div>
       {cards.length > 0 &&
         cards.map((card, index) => {
           return (
             <div className={styles.card} key={index}>
-              {card.img && <img src={urlImg} alt="avatar" className={styles.card_img} />}
+              {card.img && <img src={card.img} alt="avatar" className={styles.card_img} />}
               <div className={styles.description}>
                 <h2 className={styles.name}>
                   {card.name} {card.surname}
