@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from 'components/Card/Card';
 import { Header } from 'components/Header/Header';
-import { Character } from '../../components/interfaces';
+import { Character, ResponseCharacters } from '../../utils/interfaces';
 import styles from './Main.module.css';
-import Modal from 'components/Modal/Modal';
-import Button from 'components/Button/Button';
-
-const BASE_PATH = 'https://rickandmortyapi.com/api/character';
+import { Modal } from 'components/Modal/Modal';
+import { BASE_PATH } from 'utils/constants';
+// import Loading from 'components/Loading/Loading';
 
 export const Main = () => {
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [searchText, setSearchText] = useState('');
-  const [isModal, setModal] = useState(false);
-  const onClose = () => setModal(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [character, setDataModal] = useState<Character>();
+  // const [loading, setLoading] = useState(true);
+
+  const closeModal = () => setIsModalVisible(false);
 
   useEffect(() => {
-    localStorage.setItem('request', searchText);
+    localStorage.setItem('searchText', searchText);
     return () => {
-      localStorage.setItem('request', searchText);
+      localStorage.setItem('searchText', searchText);
     };
   }, [searchText]);
 
@@ -27,11 +29,16 @@ export const Main = () => {
       if (!response.ok) {
         throw new Error(`This is an HTTP error: The status is ${response.status}`);
       }
-      const actualData = await response.json();
+      const actualData: ResponseCharacters = await response.json();
       setCharacters(actualData.results);
     };
     getData();
-  }, []);
+  }, []); // TODO вынести в отдельный файл
+
+  function openModal(character: Character) {
+    setDataModal(character);
+    setIsModalVisible(true);
+  }
   return (
     <>
       <Header />
@@ -58,28 +65,63 @@ export const Main = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button onClick={() => setModal(true)}> popup</button>
       </div>
 
       <h1 className={styles.title}>The Rick and Morty characters</h1>
       <div className={styles.cards_wrap}>
         {characters &&
-          characters.map(({ id, name, status, species, gender, image }: Character) => {
-            return (
-              <Card
-                key={id}
-                id={id}
-                name={name}
-                status={status}
-                species={species}
-                gender={gender}
-                image={image}
-                onClick={() => setModal(true)}
-              />
-            );
-          })}
+          characters.map(
+            ({
+              id,
+              name,
+              status,
+              species,
+              gender,
+              image,
+              origin,
+              episode,
+              location,
+              url,
+              created,
+            }: Character) => {
+              return (
+                <div
+                  key={id}
+                  onClick={() =>
+                    openModal({
+                      id,
+                      name,
+                      status,
+                      species,
+                      gender,
+                      image,
+                      origin,
+                      episode,
+                      location,
+                      url,
+                      created,
+                    })
+                  }
+                >
+                  <Card
+                    id={id}
+                    name={name}
+                    status={status}
+                    species={species}
+                    gender={gender}
+                    image={image}
+                    origin={origin}
+                    episode={episode}
+                    location={location}
+                    url={url}
+                    created={created}
+                  />
+                </div>
+              );
+            }
+          )}
       </div>
-      <Modal visible={isModal} onClose={onClose} />
+      {character && isModalVisible && <Modal onClose={closeModal} characterData={character} />}
     </>
   );
 };

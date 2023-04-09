@@ -1,46 +1,4 @@
-/* .overlay {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.4);
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: 0.5s;
-    pointer-events: none;
-}
-.overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-.content {
-    padding: 1.5rem;
-    border-radius: 15px;
-    background: #fff;
-    max-width: 600px;
-    width: 100%;
-    position: relative;
-    transform: scale(0.5);
-    transition: 0.4s all;
-}
-.content.active {
-    padding: 1.5rem;
-    border-radius: 15px;
-    background: #fff;
-    max-width: 600px;
-    width: 100%;
-    position: relative;
-    transform: scale(0.5);
-}
-.close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-} */
+
 .modal {
     position: fixed;
     top: 0;
@@ -52,17 +10,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.5);
     animation-name: appear;
     animation-duration: 300ms;
   }
-  
-  .modal__dialog {
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+.modal__dialog {
     width: 100%;
-    max-width: 550px;
+    max-width: 580px;
     background: white;
     position: relative;
-    margin: 0 20px;
+    padding: 0 2rem 2rem 2rem;
+    border-radius: 15px;
     max-height: calc(100vh - 40px);
     text-align: left;
     display: flex;
@@ -74,11 +37,22 @@
     animation-name: slide-in;
     animation-duration: 0.5s;
   }
-  
-  .modal__close {
-    cursor: pointer;
-    padding: 1rem;
-    margin: -1rem -1rem -1rem auto;
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.img {
+  max-width: 300px;
+  width: 100%;
+}
+.text {
+  max-width: 250px;
+  width: 100%;
+}
+.modal__close {
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 2rem;
   }
   
   @keyframes appear {

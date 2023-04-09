@@ -12,6 +12,10 @@
     max-width: 300px;
     width: 100%;
     background-color: #46505ab5;
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #272b33;
 }
 .card_img {
     border-radius: 10px 10px 0 0;

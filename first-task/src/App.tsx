@@ -1,6 +1,5 @@
-import React from 'react';
 import './App.css';
-import { Notfound } from './pages/Notfound';
+import { Notfound } from './pages/NotFound/Notfound';
 import { Route, Routes } from 'react-router-dom';
 import { Main } from 'pages/Main/Main';
 import { About } from 'pages/About/About';

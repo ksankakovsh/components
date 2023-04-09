@@ -1,8 +1,8 @@
 import { FormBlock } from 'components/FormBlock/FormBlock';
 import { Header } from 'components/Header/Header';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Form.module.css';
-import { DataCard } from 'components/interfaces';
+import { DataCard } from 'utils/interfaces';
 import { DataForm } from 'components/DataForm/DataForm';
 
 export const Form = () => {

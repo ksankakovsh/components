@@ -1,11 +1,10 @@
-import React from 'react';
 import styles from './DataForm.module.css';
-import { DataCard } from '../interfaces';
+import { DataCard } from '../../utils/interfaces';
 interface Props {
   cards: DataCard[];
 }
 
-export const DataForm: React.FC<Props> = ({ cards }) => {
+export const DataForm = ({ cards }: Props) => {
   return (
     <div>
       {cards.length > 0 &&

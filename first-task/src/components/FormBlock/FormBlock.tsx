@@ -1,5 +1,5 @@
 import styles from './FormBlock.module.css';
-import { DataCard, FormData } from 'components/interfaces';
+import { DataCard, FormData } from 'utils/interfaces';
 import { useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
@@ -11,9 +11,8 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>();
-
   const onFormSubmit = (data: FormData) => {
     addCard({
       name: data.name,
@@ -55,19 +54,19 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
 
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
-      <Input label="Name" register={name} />
+      <Input label="Name" register={name} type={'text'} name="" image={null} />
       {errors.name && (
         <p className="form-error" role="alert">
           The name must be at least 3 characters long and start with an uppercased letter
         </p>
       )}
-      <Input type="file" label="Your photo" register={file} />
+      <Input type="file" label="Your photo" register={file} name="image" image={null} />
       {errors.img && (
         <p className="form-error" role="alert">
           You must select a photo
         </p>
       )}
-      <Input type="date" label="Birth date" register={date} />
+      <Input type="date" label="Birth date" register={date} name="date" image={null} />
       <Select
         label="Choose your species"
         values={['Human', 'Alien', 'Elf', 'Animal', 'Oleg']}
@@ -79,9 +78,7 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
         register={approval}
       />
       <div className={styles.btn__block}>
-        <Button type="submit" disable={!isValid}>
-          Submit data
-        </Button>
+        <Button type="submit">Submit data</Button>
       </div>
     </form>
   );

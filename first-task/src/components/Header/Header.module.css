@@ -11,3 +11,6 @@
     margin-right: 3rem;
 }
 .links_item:hover {color: red;}
+@media (max-width: 420px) {
+    .links {padding: 1rem;}
+}

@@ -1,29 +1,37 @@
-import React, { FC, useEffect } from 'react';
 import styles from './Modal.module.css';
-import { ModalProps } from 'components/interfaces';
+import { ModalProps } from 'utils/interfaces';
 
-const Modal: FC<ModalProps> = ({ visible = false, onClose }) => {
-  //   const onKeydown = ({ key }: KeyboardEvent) => {
-  //     switch (key) {
-  //       case 'Escape':
-  //         onClose();
-  //         break;
-  //     }
-  //   };
-  //   useEffect(() => {
-  //     document.addEventListener('keydown', onKeydown);
-  //     return () => document.removeEventListener('keydown', onKeydown);
-  //   });
-  if (!visible) return null;
+export const Modal = ({ characterData: data, onClose }: ModalProps) => {
+  const { name, gender, species, status, origin, location, image } = data;
   return (
-    <div className={styles.modal} onClick={onClose}>
+    <div className={styles.modal} onClick={() => onClose(true)}>
       <div className={styles.modal__dialog} onClick={(e) => e.stopPropagation()}>
-        <span className={styles.modal__close} onClick={onClose}>
+        <span className={styles.modal__close} onClick={() => onClose(true)}>
           &times;
         </span>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius omnis fugiat consequatur sunt
-        quasi ducimus eaque qui maxime ipsam? Similique eaque molestiae maiores, ipsa suscipit
-        nostrum aliquid quasi praesentium id.
+        <div className={styles.wrapper}>
+          <div>
+            <img src={image} alt="img" className={styles.img} />
+          </div>
+          <div className={styles.text}>
+            <p className={styles.name}>{name}</p>
+            <p>
+              Status:&nbsp;<b>{status}</b>
+            </p>
+            <p>
+              Gender:&nbsp;<b>{gender}</b>
+            </p>
+            <p>
+              Species:&nbsp;<b>{species}</b>
+            </p>
+            <p>
+              Home planet:&nbsp;<b>{origin.name}</b>
+            </p>
+            <p>
+              Location:&nbsp;<b>{location.name}</b>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

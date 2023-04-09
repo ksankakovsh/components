@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './Button.module.css';
-import { PropsBtn } from 'components/interfaces';
+import { PropsBtn } from 'utils/interfaces';
 
 const Button: FC<PropsBtn> = (props) => {
   const { disable, type = 'button', className, ...restProps } = props;
