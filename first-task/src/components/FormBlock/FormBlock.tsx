@@ -54,7 +54,7 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
 
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
-      <Input label="Name" register={name} type={'text'} name="" image={null} />
+      <Input label="Name" register={name} type={'text'} name="name" image={null} />
       {errors.name && (
         <p className="form-error" role="alert">
           The name must be at least 3 characters long and start with an uppercased letter

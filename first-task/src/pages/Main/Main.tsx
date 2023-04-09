@@ -15,6 +15,9 @@ export const Main = () => {
   // const [loading, setLoading] = useState(true);
 
   const closeModal = () => setIsModalVisible(false);
+  const searchCharacters = characters.filter((character) => {
+    return character.name.toLowerCase().includes(searchText.toLowerCase());
+  });
 
   useEffect(() => {
     localStorage.setItem('searchText', searchText);
@@ -69,8 +72,8 @@ export const Main = () => {
 
       <h1 className={styles.title}>The Rick and Morty characters</h1>
       <div className={styles.cards_wrap}>
-        {characters &&
-          characters.map(
+        {searchCharacters &&
+          searchCharacters.map(
             ({
               id,
               name,
