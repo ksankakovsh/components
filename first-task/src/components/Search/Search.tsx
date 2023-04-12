@@ -11,7 +11,6 @@ export function Search({ setURL }: { setURL: Dispatch<SetStateAction<string>> })
     };
   });
   const onSubmit = () => {
-    console.log(getValues());
     setURL(`${BASE_PATH}/?name=${getValues().search}`);
   };
 

@@ -2,7 +2,6 @@ import { FC } from 'react';
 import styles from './Select.module.css';
 import { SelectProps } from 'utils/interfaces';
 
-//TODO переписать пропсы диструктуризацией
 const MySelect: FC<Partial<SelectProps>> = (props) => {
   const { register, label, name, values, value, onChange, options } = props;
 

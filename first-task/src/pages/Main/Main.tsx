@@ -33,8 +33,7 @@ export const Main = () => {
     };
     getData();
     setLoading(false);
-    console.log('sdfd');
-  }, [URL]); // TODO вынести в отдельный файл
+  }, [URL]);
   function openModal(character: Character) {
     setDataModal(character);
     setIsModalVisible(true);
