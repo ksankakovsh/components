@@ -1,7 +1,6 @@
-import React from 'react';
 import styles from './Loading.module.css';
 
-function Loading() {
+export const Loading = () => {
   return (
     <div>
       <svg className={styles.spinner} viewBox="0 0 50 50">
@@ -9,6 +8,6 @@ function Loading() {
       </svg>
     </div>
   );
-}
+};
 
 export default Loading;
