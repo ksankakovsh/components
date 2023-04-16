@@ -1,12 +1,16 @@
 import styles from './FormBlock.module.css';
 import { DataCard, FormData } from 'utils/interfaces';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../app/hooks';
+import { addCard } from 'app/formSlice';
 import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
 import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
+import { useEffect } from 'react';
 
-export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) => {
+export const FormBlock = () => {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -14,14 +18,17 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
     formState: { errors },
   } = useForm<FormData>();
   const onFormSubmit = (data: FormData) => {
-    addCard({
-      name: data.name,
-      surname: data.surname,
-      date: data.date,
-      species: data.species,
-      img: URL.createObjectURL(data.img[0]),
-      approval: true,
-    });
+    const imageSrc = URL.createObjectURL(data.img[0]);
+    const approv = data.approval.toString();
+    dispatch(
+      addCard({
+        name: data.name,
+        date: data.date,
+        species: data.species,
+        img: imageSrc,
+        approval: approv,
+      })
+    );
     reset();
   };
 
@@ -51,7 +58,6 @@ export const FormBlock = ({ addCard }: { addCard: (card: DataCard) => void }) =>
   const approval = register('approval', {
     validate: (data) => data,
   });
-
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
       <Input label="Name" register={name} type={'text'} name="name" image={null} />

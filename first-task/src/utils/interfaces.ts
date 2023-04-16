@@ -59,11 +59,10 @@ export interface PropsBtn {
 }
 export interface DataCard {
   name: string;
-  surname: string;
   date: string;
   species: string;
-  approval: boolean;
-  img: string | null;
+  approval: boolean | string;
+  img: string;
 }
 export interface ModalProps {
   onClose: (visible: boolean) => void;
