@@ -1,10 +1,6 @@
 import styles from './DataForm.module.css';
-// import { DataCard } from '../../utils/interfaces';
 import { useAppSelector } from '../../app/hooks';
 import { FC } from 'react';
-// interface Props {
-//   cards: DataCard[];
-// }
 
 export const DataForm: FC = () => {
   const cards = useAppSelector((state) => state.cards.cards);

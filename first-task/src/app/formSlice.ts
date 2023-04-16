@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DataCard, FormData } from 'utils/interfaces';
+import { DataCard } from 'utils/interfaces';
 interface CardSatate {
   cards: DataCard[];
 }

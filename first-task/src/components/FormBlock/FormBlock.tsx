@@ -1,5 +1,5 @@
 import styles from './FormBlock.module.css';
-import { DataCard, FormData } from 'utils/interfaces';
+import { FormData } from 'utils/interfaces';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../app/hooks';
 import { addCard } from 'app/formSlice';
@@ -7,7 +7,6 @@ import Input from 'components/Input/Input';
 import Select from 'components/Select/Select';
 import Button from 'components/Button/Button';
 import Checkbox from 'components/Checkbox/Checkbox';
-import { useEffect } from 'react';
 
 export const FormBlock = () => {
   const dispatch = useAppDispatch();
