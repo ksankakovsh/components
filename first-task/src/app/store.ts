@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import formReducer from './formSlice';
+import searchReducer from './searchSlice';
 import { characterApi } from '../app/api';
 
 export const store = configureStore({
   reducer: {
     cards: formReducer,
+    search: searchReducer,
     [characterApi.reducerPath]: characterApi.reducer,
   },
   middleware: (getDefaultMiddlware) => getDefaultMiddlware().concat(characterApi.middleware),

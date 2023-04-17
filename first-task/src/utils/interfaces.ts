@@ -72,3 +72,6 @@ export interface ModalProps {
 export interface FormData extends Omit<DataCard, 'img'> {
   img: FileList;
 }
+export interface SearchValue {
+  search: string;
+}

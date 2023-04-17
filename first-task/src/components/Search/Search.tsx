@@ -1,24 +1,23 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './Search.module.css';
 import { useForm } from 'react-hook-form';
-import { BASE_PATH, searchTextFromStorage } from 'utils/constants';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { updateSearchValue } from 'app/searchSlice';
+import { SearchValue } from 'utils/interfaces';
 
-export function Search({ setURL }: { setURL: Dispatch<SetStateAction<string>> }) {
-  const { register, handleSubmit, getValues } = useForm();
-  useEffect(() => {
-    return () => {
-      localStorage.setItem(searchTextFromStorage, getValues().search);
-    };
-  });
-  const onSubmit = () => {
-    setURL(`${BASE_PATH}/?name=${getValues().search}`);
+export function Search() {
+  const { register, handleSubmit } = useForm<SearchValue>();
+  const dispatch = useAppDispatch();
+  const initialValue = useAppSelector((state) => state.search.searchValue);
+
+  const onSubmit = (search: SearchValue) => {
+    dispatch(updateSearchValue(search.search));
   };
 
   return (
     <form className={styles.search_bar} onSubmit={handleSubmit(onSubmit)}>
       <input
         className={styles.input}
-        defaultValue={localStorage.getItem(searchTextFromStorage) || ''}
+        defaultValue={initialValue}
         placeholder="Enter character name"
         type="text"
         {...register('search')}
