@@ -1,28 +1,24 @@
-// import { useState } from 'react';
 import { Card } from 'components/Card/Card';
 import { Header } from 'components/Header/Header';
-// import { Character } from '../../utils/interfaces';
 import styles from './Main.module.css';
-// import { Modal } from 'components/Modal/Modal';
 import { Search } from 'components/Search/Search';
 import { characterApi } from 'app/api';
 import { Loading } from 'components/Loading/Loading';
-import { useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { updateCardId } from 'app/modalSlice';
+import { Modal } from 'components/Modal/Modal';
 
 export const Main = () => {
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // const [character, setDataModal] = useState<Character>();
+  const dispatch = useAppDispatch();
   const searchValue = useAppSelector((state) => state.search.searchValue);
   const { data, isLoading } = characterApi.useGetCharactersQuery(searchValue);
+  const isVisibleModal = useAppSelector((state) => state.modal.isActive);
   if (isLoading) return <Loading />;
   const characters = data?.results;
 
-  // const closeModal = () => setIsModalVisible(false);
-
-  // function openModal(character: Character) {
-  //   setDataModal(character);
-  //   setIsModalVisible(true);
-  // }
+  const onUpdateModal = (id: number) => {
+    dispatch(updateCardId({ id, isActive: true }));
+  };
   return (
     <>
       <Header />
@@ -31,10 +27,20 @@ export const Main = () => {
       <div className={styles.cards_wrap}>
         {characters &&
           characters.map((result) => {
-            return <Card character={result} key={result.id} />;
+            return (
+              <div
+                onClick={() => {
+                  onUpdateModal(result.id);
+                }}
+                key={result.id}
+                aria-hidden="true"
+              >
+                <Card character={result} key={result.id} />
+              </div>
+            );
           })}
       </div>
-      {/* {character && isModalVisible && <Modal onClose={closeModal} characterData={character} />} */}
+      {isVisibleModal && <Modal />}
     </>
   );
 };
