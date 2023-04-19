@@ -1,0 +1,15 @@
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.form__wrap {
+    max-width: 1500px;
+    width: 100%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+.form__descr {
+    max-width: 800px;
+    width: 100%;
+}
