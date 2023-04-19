@@ -4,10 +4,16 @@ import { Character, ResponseCharacters } from 'utils/interfaces';
 
 export const characterApi = createApi({
   reducerPath: 'characterApi',
+  keepUnusedDataFor: 0,
   baseQuery: fetchBaseQuery({ baseUrl: BASE_PATH }),
   endpoints: (build) => ({
     getCharacters: build.query<ResponseCharacters, string>({
-      query: () => ({ url: `character` }),
+      query: (characterName) => ({
+        url: '/character',
+        params: {
+          name: characterName,
+        },
+      }),
     }),
     getCharacter: build.query<Character, number>({
       query: (id) => ({ url: `character/${id}` }),

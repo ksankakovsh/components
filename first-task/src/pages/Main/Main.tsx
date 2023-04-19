@@ -7,18 +7,27 @@ import { Loading } from 'components/Loading/Loading';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { updateCardId } from 'app/modalSlice';
 import { Modal } from 'components/Modal/Modal';
+import { useEffect } from 'react';
+import { setCharactersData } from 'app/searchSlice';
+import { Character } from 'utils/interfaces';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
   const searchValue = useAppSelector((state) => state.search.searchValue);
   const { data, isLoading } = characterApi.useGetCharactersQuery(searchValue);
   const isVisibleModal = useAppSelector((state) => state.modal.isActive);
-  if (isLoading) return <Loading />;
   const characters = data?.results;
+
+  useEffect(() => {
+    dispatch(setCharactersData(characters as Character[]));
+  }, [characters, dispatch, searchValue]);
+
+  if (isLoading) return <Loading />;
 
   const onUpdateModal = (id: number) => {
     dispatch(updateCardId({ id, isActive: true }));
   };
+
   return (
     <>
       <Header />

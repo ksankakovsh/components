@@ -1,7 +1,7 @@
 import styles from './Search.module.css';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { updateSearchValue } from 'app/searchSlice';
+import { setSearchValue } from 'app/searchSlice';
 import { SearchValue } from 'utils/interfaces';
 
 export function Search() {
@@ -10,7 +10,7 @@ export function Search() {
   const initialValue = useAppSelector((state) => state.search.searchValue);
 
   const onSubmit = (search: SearchValue) => {
-    dispatch(updateSearchValue(search.search));
+    dispatch(setSearchValue(search.search));
   };
 
   return (
