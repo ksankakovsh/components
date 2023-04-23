@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import './index.css';
@@ -7,8 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
+ReactDOM.hydrate( // не понимаю что не так
   <BrowserRouter>
     <React.StrictMode>
       <Provider store={store}>

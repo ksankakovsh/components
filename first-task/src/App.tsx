@@ -5,7 +5,7 @@ import { Main } from 'pages/Main/Main';
 import { About } from 'pages/About/About';
 import { Form } from 'pages/Form/Form';
 
-const App = () => {
+export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
