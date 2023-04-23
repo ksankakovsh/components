@@ -1,19 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './Button.module.css';
-import { PropsBtn } from 'utils/interfaces';
+import { ButtonProps } from 'utils/interfaces';
 
-const Button: FC<PropsBtn> = (props) => {
-  const { disable, type = 'button', className, ...restProps } = props;
-  const cls = [styles.Button];
-  if (className) {
-    cls.push(className);
-  }
-  if (disable) {
-    cls.push(styles.disable);
-  }
+const Button: FC<ButtonProps> = (props) => {
+  const { type } = props;
 
   return (
-    <button className={cls.join(' ')} type={type} disabled={disable} {...restProps}>
+    <button className={styles.button} type={type}>
       {props.children}
     </button>
   );

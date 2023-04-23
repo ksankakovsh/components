@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { updateCardId } from 'app/modalSlice';
 import { Modal } from 'components/Modal/Modal';
 import { useEffect } from 'react';
-import { setCharactersData } from 'app/searchSlice';
+import { setCharacters } from 'app/searchSlice';
 import { Character } from 'utils/interfaces';
 
 export const Main = () => {
@@ -19,7 +19,7 @@ export const Main = () => {
   const characters = data?.results;
 
   useEffect(() => {
-    dispatch(setCharactersData(characters as Character[]));
+    dispatch(setCharacters(characters as Character[]));
   }, [characters, dispatch, searchValue]);
 
   if (isLoading) return <Loading />;

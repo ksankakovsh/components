@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DataCard } from 'utils/interfaces';
-interface CardSatate {
-  cards: DataCard[];
+import { CardData } from 'utils/interfaces';
+interface Cards {
+  cards: CardData[];
 }
-const initialState: CardSatate = {
+const initialState: Cards = {
   cards: [],
 };
 
@@ -11,13 +11,14 @@ export const formSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    addCard(state, action: PayloadAction<DataCard>) {
+    addCard(state, action: PayloadAction<CardData>) {
+      const { name, date, species, img, approval } = action.payload;
       state.cards.push({
-        name: action.payload.name,
-        date: action.payload.date,
-        species: action.payload.species,
-        img: action.payload.img,
-        approval: action.payload.approval,
+        name,
+        date,
+        species,
+        img,
+        approval,
       });
     },
   },

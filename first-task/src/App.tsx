@@ -5,7 +5,7 @@ import { Main } from 'pages/Main/Main';
 import { About } from 'pages/About/About';
 import { Form } from 'pages/Form/Form';
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
@@ -14,6 +14,6 @@ function App() {
       <Route path="*" element={<Notfound />} />
     </Routes>
   );
-}
+};
 
 export default App;

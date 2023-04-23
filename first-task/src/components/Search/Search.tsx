@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { setSearchValue } from 'app/searchSlice';
 import { SearchValue } from 'utils/interfaces';
 
-export function Search() {
+export const Search = () => {
   const { register, handleSubmit } = useForm<SearchValue>();
   const dispatch = useAppDispatch();
   const initialValue = useAppSelector((state) => state.search.searchValue);
@@ -42,4 +42,4 @@ export function Search() {
       </button>
     </form>
   );
-}
+};

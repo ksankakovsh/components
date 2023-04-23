@@ -1,4 +1,4 @@
-.Button {
+.button {
     border-radius: 5px;
     color: aliceblue;
     background: #000000;
@@ -8,12 +8,12 @@
     height: 42px;
     border: none;
   }
-.Button:hover {
+.button:hover {
       background: aliceblue;
       border: 1px solid black;
       color: #000000;
     }
-.Button.disable {
+.button.disable {
     background: #858181;
     color: aliceblue;
     border: none;

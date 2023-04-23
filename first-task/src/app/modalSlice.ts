@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type InitialState = {
+type InitialStateModal = {
   id: number;
   isActive: boolean;
 };
@@ -11,9 +11,10 @@ const modalSlice = createSlice({
     isActive: false,
   },
   reducers: {
-    updateCardId(state, action: PayloadAction<InitialState>) {
-      state.id = action.payload.id;
-      state.isActive = action.payload.isActive;
+    updateCardId(state, action: PayloadAction<InitialStateModal>) {
+      const { id, isActive } = action.payload;
+      state.id = id;
+      state.isActive = isActive;
     },
   },
 });

@@ -1,7 +1,7 @@
 import styles from './Input.module.css';
-import { PropsInput } from 'utils/interfaces';
+import { InputProps } from 'utils/interfaces';
 
-const Input = ({ type = 'text', label, register, image }: PropsInput) => {
+const Input = ({ type = 'text', label, register, image }: InputProps) => {
   const inputId = `${type}-${Math.random()}`;
 
   return (
@@ -12,7 +12,14 @@ const Input = ({ type = 'text', label, register, image }: PropsInput) => {
         </label>
       )}
       {type === 'file' && image ? <img src={image} alt="avatar" className={styles.avatar} /> : null}
-      <input type={type} id={inputId} {...register} className={styles.inputForm} />
+      <input
+        type={type}
+        id={inputId}
+        {...register}
+        className={
+          type === 'date' ? `${styles.input__date} ${styles.input__form}` : styles.input__form
+        }
+      />
     </div>
   );
 };

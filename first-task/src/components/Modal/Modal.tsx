@@ -6,13 +6,13 @@ import { Loading } from 'components/Loading/Loading';
 
 export const Modal = () => {
   const dispatch = useAppDispatch();
-  const cardID = useAppSelector((state) => state.modal.id);
-  const { data, isFetching } = characterApi.useGetCharacterQuery(cardID);
+  const cardId = useAppSelector((state) => state.modal.id);
+  const { data, isFetching } = characterApi.useGetCharacterQuery(cardId);
   return (
     <div
-      className={styles.modal}
+      className={styles.modal__overlay}
       onClick={() => {
-        dispatch(updateCardId({ id: cardID, isActive: false }));
+        dispatch(updateCardId({ id: cardId, isActive: false }));
       }}
     >
       {isFetching ? (
@@ -22,7 +22,7 @@ export const Modal = () => {
           <span
             className={styles.modal__close}
             onClick={() => {
-              dispatch(updateCardId({ id: cardID, isActive: false }));
+              dispatch(updateCardId({ id: cardId, isActive: false }));
             }}
           >
             &times;
@@ -55,5 +55,3 @@ export const Modal = () => {
     </div>
   );
 };
-
-export default Modal;

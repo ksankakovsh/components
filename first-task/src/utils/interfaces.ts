@@ -34,7 +34,7 @@ export interface SearchCharacters {
   searchText: string;
   result: Character[];
 }
-export interface PropsInput {
+export interface InputProps {
   register: UseFormRegisterReturn;
   type: string;
   name: string;
@@ -50,14 +50,14 @@ export interface SelectProps {
   register: UseFormRegisterReturn;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
-export interface PropsBtn {
+export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset' | undefined;
   className?: string;
   disable?: boolean;
   onClick?: () => void;
   children: React.ReactNode;
 }
-export interface DataCard {
+export interface CardData {
   name: string;
   date: string;
   species: string;
@@ -69,7 +69,7 @@ export interface ModalProps {
   characterData: Character;
 }
 
-export interface FormData extends Omit<DataCard, 'img'> {
+export interface FormData extends Omit<CardData, 'img'> {
   img: FileList;
 }
 export interface SearchValue {

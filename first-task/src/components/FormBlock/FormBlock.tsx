@@ -88,4 +88,3 @@ export const FormBlock = () => {
     </form>
   );
 };
-export default FormBlock;

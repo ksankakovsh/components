@@ -1,4 +1,4 @@
-.inputForm {
+.input__form {
     border-bottom: 2px solid black;
     max-width: 500px;
     width: 100%;
@@ -11,7 +11,7 @@
     text-align: left;
     margin-bottom: 1rem;
 }
-input[type=date] {
+.input__date {
     flex-direction: row;
 }
 .avatar {
