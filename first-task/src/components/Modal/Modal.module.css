@@ -38,7 +38,7 @@
     animation-duration: 0.5s;
   }
 .name {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 700;
 }
 .img {
@@ -52,7 +52,7 @@
 .modal__close {
   cursor: pointer;
   align-self: flex-end;
-  font-size: 2rem;
+  font-size: 28px;
   }
   
   @keyframes appear {

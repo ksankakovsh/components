@@ -1,5 +1,5 @@
 .subtitle {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 600;
 }
 .form__wrap {
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
 }
-.form__descr {
+.form__description{
     max-width: 800px;
     width: 100%;
 }

@@ -3,7 +3,7 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
-    background: rgb(39, 43, 51);
+    background: #272b33;
     padding: 50px 0;
 }
 .title {
@@ -20,7 +20,7 @@
 }
 .input {
     display: block;
-    border: 1px solid rgb(255, 152, 0);
+    border: 1px solid #ff9800;
     max-width: 320px;
     width: 100%;
     font-size: 1.5rem;

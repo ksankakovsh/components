@@ -8,7 +8,7 @@ export const Form = () => {
     <>
       <Header />
       <div className={styles.form__wrap}>
-        <div className={styles.form__descr}>
+        <div className={styles.form__description}>
           <h1>Team Rick and Morty needs new faces!</h1>
           <p className={styles.subtitle}>
             If you would like to be part of our team and travel with us to distant worlds and

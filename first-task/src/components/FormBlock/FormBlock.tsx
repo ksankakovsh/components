@@ -18,14 +18,14 @@ export const FormBlock = () => {
   } = useForm<FormData>();
   const onFormSubmit = (data: FormData) => {
     const imageSrc = URL.createObjectURL(data.img[0]);
-    const approv = data.approval.toString();
+    const approved = data.approval.toString();
     dispatch(
       addCard({
         name: data.name,
         date: data.date,
         species: data.species,
         img: imageSrc,
-        approval: approv,
+        approval: approved,
       })
     );
     reset();
@@ -59,7 +59,7 @@ export const FormBlock = () => {
   });
   return (
     <form action="" className={styles.form__block} onSubmit={handleSubmit(onFormSubmit)}>
-      <Input label="Name" register={name} type={'text'} name="name" image={null} />
+      <Input label="Name" register={name} type={'text'} name="name" />
       {errors.name && (
         <p className="form-error" role="alert">
           The name must be at least 3 characters long and start with an uppercased letter
@@ -71,7 +71,7 @@ export const FormBlock = () => {
           You must select a photo
         </p>
       )}
-      <Input type="date" label="Birth date" register={date} name="date" image={null} />
+      <Input type="date" label="Birth date" register={date} name="date" />
       <Select
         label="Choose your species"
         values={['Human', 'Alien', 'Elf', 'Animal', 'Oleg']}

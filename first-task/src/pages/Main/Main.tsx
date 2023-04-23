@@ -22,8 +22,6 @@ export const Main = () => {
     dispatch(setCharacters(characters as Character[]));
   }, [characters, dispatch, searchValue]);
 
-  if (isLoading) return <Loading />;
-
   const onUpdateModal = (id: number) => {
     dispatch(updateCardId({ id, isActive: true }));
   };
@@ -33,22 +31,26 @@ export const Main = () => {
       <Header />
       <Search />
       <h1 className={styles.title}>The Rick and Morty characters</h1>
-      <div className={styles.cards_wrap}>
-        {characters &&
-          characters.map((result) => {
-            return (
-              <div
-                onClick={() => {
-                  onUpdateModal(result.id);
-                }}
-                key={result.id}
-                aria-hidden="true"
-              >
-                <Card character={result} key={result.id} />
-              </div>
-            );
-          })}
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className={styles.cards_wrap}>
+          {characters &&
+            characters.map((result) => {
+              return (
+                <div
+                  onClick={() => {
+                    onUpdateModal(result.id);
+                  }}
+                  key={result.id}
+                  aria-hidden="true"
+                >
+                  <Card character={result} key={result.id} />
+                </div>
+              );
+            })}
+        </div>
+      )}
       {isVisibleModal && <Modal />}
     </>
   );

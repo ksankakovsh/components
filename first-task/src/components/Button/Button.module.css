@@ -10,11 +10,11 @@
   }
 .button:hover {
       background: aliceblue;
-      border: 1px solid black;
+      border: 1px solid #000000;
       color: #000000;
     }
 .button.disable {
-    background: #858181;
+    background: #868282;
     color: aliceblue;
     border: none;
   }

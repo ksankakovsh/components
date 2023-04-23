@@ -1,16 +1,18 @@
 .links {
     display: flex;
     padding: 2rem 5rem;
-    background: rgb(39, 43, 51);
+    background: #272b33;
 }
 .links_item {
     text-decoration: none;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 700;
     margin-right: 3rem;
 }
-.links_item:hover {color: red;}
+.links_item:hover {
+    color: #FF2400;
+}
 @media (max-width: 420px) {
     .links {padding: 1rem;}
 }

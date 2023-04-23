@@ -3,11 +3,11 @@
     color: #ffffff;
 }
 .name {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 700;
 }
 .card {
-    border: solid rgb(255, 152, 0);
+    border: solid #ff9800;
     border-radius: 10px;
     max-width: 300px;
     width: 100%;

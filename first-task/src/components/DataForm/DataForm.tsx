@@ -8,7 +8,7 @@ export const DataForm: FC = () => {
     <div>
       {cards.map((card, index) => {
         return (
-          <div className={styles.card} key={index} {...card}>
+          <div className={styles.card} key={index}>
             {card.img && <img src={card.img} alt="avatar" className={styles.card_img} />}
             <div className={styles.description}>
               <h2 className={styles.name}>{card.name}</h2>

@@ -22,7 +22,7 @@ export const Search = () => {
         type="text"
         {...register('search')}
       />
-      <button type="submit" className={styles.btn}>
+      <button type="submit" className={styles.button}>
         <svg
           enableBackground="new 0 0 32 32"
           id="Glyph"

@@ -39,7 +39,7 @@ export interface InputProps {
   type: string;
   name: string;
   label: string;
-  image: string | null;
+  image?: string | null;
 }
 export interface SelectProps {
   name: string;
