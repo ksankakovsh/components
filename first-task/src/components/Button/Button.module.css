@@ -1,0 +1,21 @@
+.button {
+    border-radius: 5px;
+    color: aliceblue;
+    background: #000000;
+    max-width: 200px;
+    width: 100%;
+    cursor: pointer;
+    height: 42px;
+    border: none;
+  }
+.button:hover {
+      background: aliceblue;
+      border: 1px solid #000000;
+      color: #000000;
+    }
+.button.disable {
+    background: #868282;
+    color: aliceblue;
+    border: none;
+  }
+  
